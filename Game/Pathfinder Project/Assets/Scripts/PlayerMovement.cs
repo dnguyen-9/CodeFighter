@@ -11,9 +11,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Rigidbody rb;
 
-	private bool is_normal = true;
-	private bool is_reverted = false;
-	private bool is_frozen = false;
+	private bool is_reverted;
+	private bool is_frozen;
 
 	void Start () {
 		spawnPoint = transform.position;
@@ -22,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void FixedUpdate () 
 	{
-		enableGravity ();
+		EnableGravity ();
 
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
@@ -37,27 +36,17 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		if (is_frozen) {
-			print ("Frozen");
 			is_frozen = false;
 
 			moveSpeed = 5f;
 		}
 
 		if (is_reverted) {
-			print ("Reverted");
 			is_reverted = false;
 
 			moveSpeed = -30f;
 		}
 	}
-
-//	void OnCollisionEnter(Collision other) 
-//	{
-//		if (other.transform.tag == "End") 
-//		{
-//			print ("Hello");
-//		}
-//	}
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -69,7 +58,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (other.transform.name == "Special: Hollow") {
 			print ("hollow");
 
-			enableGravity ();
+			EnableGravity ();
 		}
 		if (other.transform.name == "Special: Revert") {//
 			other.isTrigger = false;
@@ -81,17 +70,23 @@ public class PlayerMovement : MonoBehaviour {
 
 			is_frozen = true;
 		}
+		if (other.transform.name == "Special: Bounce") {
+			other.isTrigger = false;
+
+//			other.transform.localScale += new Vector3 (0, 10f, 0);
+
+		}
 	}
 		
-	void enableGravity()
+	void EnableGravity()
 	{
 		rb.useGravity = true;
 	}
 
-	void disableGravity()
-	{
-		rb.useGravity = false;
-	}
+//	void DisableGravity()
+//	{
+//		rb.useGravity = false;
+//	}
 
 	void Die() 
 	{
