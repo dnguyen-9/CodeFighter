@@ -9,8 +9,17 @@ public class Stage
 
     public Stage()
     {
+        
     }
 
+    private string _StageName = String.Empty;
+    
+    public string StageName
+    {
+        get { return _StageName; }
+        set { _StageName = value; }
+    }
+    
     public List<Tile> Tiles
     {
         get

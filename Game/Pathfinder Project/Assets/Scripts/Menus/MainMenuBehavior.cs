@@ -12,7 +12,8 @@ public class MainMenuBehavior : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        InitializeStageSelectionDropdown();
+        CustomGameManager.LoadCustomStages();
+        InitializeCustomStageSelectionDropdown();
     }
 	
 	// Update is called once per frame
@@ -21,12 +22,16 @@ public class MainMenuBehavior : MonoBehaviour
 		
 	}
 
-    private void InitializeStageSelectionDropdown()
+    /// <summary>
+    /// Populates the custom stage selection dropdown
+    /// </summary>
+    private void InitializeCustomStageSelectionDropdown()
     {
         if (Dropdown != null)
         {
             Dropdown.options.Clear();
 
+            // Create a dropdown option for each stage in the stage list
             foreach (string stage in StageBuilder.GetStageListFromResources())
             {
                 Dropdown.OptionData optionData = new Dropdown.OptionData(stage);
@@ -34,9 +39,9 @@ public class MainMenuBehavior : MonoBehaviour
             }
 
             // If a stage is currently active, select that stage by default, otherwise select index zero
-            if (!string.IsNullOrEmpty(World.CurrentStageName))
+            if (CustomGameManager.CurrentStage != null)
             {
-                Dropdown.value = StageBuilder.GetStageListFromResources().IndexOf(World.CurrentStageName);
+                Dropdown.value = StageBuilder.GetStageListFromResources().IndexOf(CustomGameManager.CurrentStage.StageName);
             }
             else
             {
@@ -48,14 +53,13 @@ public class MainMenuBehavior : MonoBehaviour
         }
     }
 
-    public void StartStage()
+    public void StartGame()
     {
-        World.CurrentStageName = Dropdown.captionText.text;
-        SceneManager.LoadScene("Stages");
+        GameManager.StartGame();
     }
 
-    public void ChangeSceneBackToMainMenu()
+    public void StartCustomGame()
     {
-        SceneManager.LoadScene("Main Menu");
+        CustomGameManager.StartStage(Dropdown.captionText.text);
     }
 }

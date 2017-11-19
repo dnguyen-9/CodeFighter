@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -219,6 +221,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Game\CustomGameManager.cs" />
+    <Compile Include="Assets\Scripts\Game\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Game\UIOverlayManager.cs" />
+    <Compile Include="Assets\Scripts\Menus\ExitToMenuPanelBehavior.cs" />
     <Compile Include="Assets\Scripts\Menus\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\Movement\CameraBehavior.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
@@ -226,15 +232,21 @@
     <Compile Include="Assets\Scripts\Stage Builder\StageBuilder.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\Tile.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\TileEnum.cs" />
-    <Compile Include="Assets\Scripts\Stage Builder\World.cs" />
+    <Compile Include="Assets\Scripts\Tile Behavior\EndTileBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Resources\StageInstructions\Level 1.txt" />
+    <None Include="Assets\Resources\StageInstructions\Level 2.txt" />
+    <None Include="Assets\Resources\StageInstructions\Level 3.txt" />
+    <None Include="Assets\Resources\StageInstructions\Level 4.txt" />
+    <None Include="Assets\Resources\StageInstructions\Level 5.txt" />
     <None Include="Assets\Resources\Stages\Stage1.txt" />
     <None Include="Assets\Resources\Stages\Stage2.txt" />
     <None Include="Assets\Resources\Stages\Stage3.txt" />
     <None Include="Assets\Resources\Stages\Stage4.txt" />
     <None Include="Assets\Resources\Stages\TestStage.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

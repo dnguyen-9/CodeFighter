@@ -33,8 +33,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-            SceneManager.LoadScene("Main Menu");
     }
 
     public void FixedUpdate () 

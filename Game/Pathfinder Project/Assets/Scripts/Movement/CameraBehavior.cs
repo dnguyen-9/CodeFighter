@@ -34,6 +34,12 @@ public class CameraBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // Don't update anything if the game is paused, indicated by a time scale of zero
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         currentX += Input.GetAxis("Mouse X") * sensitivityX;
         currentY += Input.GetAxis("Mouse Y") * sensitivityY;
 
@@ -43,13 +49,15 @@ public class CameraBehavior : MonoBehaviour
 
     private void LateUpdate()
     {
+        // Don't update anything if the game is paused, indicated by a time scale of zero
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         Vector3 direction = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-
-
         camTransform.position = lookAt.position + rotation * direction;
-
-
         camTransform.LookAt(lookAt.position);
     }
 }
