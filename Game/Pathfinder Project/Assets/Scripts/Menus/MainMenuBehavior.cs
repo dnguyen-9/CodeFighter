@@ -32,7 +32,9 @@ public class MainMenuBehavior : MonoBehaviour
             Dropdown.options.Clear();
 
             // Create a dropdown option for each stage in the stage list
-            foreach (string stage in StageBuilder.GetStageListFromResources())
+            List<string> stageList = StageBuilder.GetStageListFromResources();
+
+            foreach (string stage in stageList)
             {
                 Dropdown.OptionData optionData = new Dropdown.OptionData(stage);
                 Dropdown.options.Add(optionData);

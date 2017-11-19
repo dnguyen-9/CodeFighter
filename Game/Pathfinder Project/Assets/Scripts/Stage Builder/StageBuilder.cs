@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -27,30 +28,15 @@ public class StageBuilder : MonoBehaviour
     {
         List<string> stageList = new List<string>();
 
-        string stagePath = Application.dataPath + "/Resources/Stages/";
+        var stagesFromResources = Resources.LoadAll("Stages");
 
-        foreach (string file in Directory.GetFiles(stagePath, "*.txt"))
+        foreach (UnityEngine.Object o in stagesFromResources)
         {
-            string stageName = Path.GetFileNameWithoutExtension(file);
-            stageList.Add(stageName);
+            string stageName = o.name;
+            stageList.Add(o.name);
         }
 
         return stageList;
-    }
-
-    /// <summary>
-    /// Loads a Stage object from a file path
-    /// </summary>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
-    public static Stage LoadStageFromFile(string filePath)
-    {
-        // TODO: Wrap a try/catch around this!
-        string stageText = File.ReadAllText(filePath);
-        Stage stage = ParseStageFromText(stageText);
-        stage.StageName = Path.GetFileNameWithoutExtension(filePath);
-
-        return stage;
     }
 
     /// <summary>
@@ -62,10 +48,8 @@ public class StageBuilder : MonoBehaviour
     {
         Stage stage = null;
 
-        string stagePath = Application.dataPath + "/Resources/Stages/" + stageName + ".txt";
-
-        if (File.Exists(stagePath))
-            stage = LoadStageFromFile(stagePath);
+        string stageText = Resources.Load("Stages/" + stageName).ToString();
+        stage = ParseStageFromText(stageText);
 
         return stage;
     }
@@ -94,7 +78,7 @@ public class StageBuilder : MonoBehaviour
             switch (tile.TileType)
             {
                 case TileTypeEnum.Start:
-                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Start"));
+                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Tiles/Start"));
                     Vector3 spawnPosition = tile.Position + new Vector3(0, 1, 0);
                     GameObject player = (GameObject)GameObject.FindGameObjectWithTag("Player");
                     PlayerMovement.SpawnLocation = spawnPosition;
@@ -102,11 +86,11 @@ public class StageBuilder : MonoBehaviour
                     break;
 
                 case TileTypeEnum.Solid:
-                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Tile"));
+                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Tiles/Tile"));
                     break;
 
                 case TileTypeEnum.End:
-                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/End"));
+                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Tiles/End"));
                     break;
 
                 case TileTypeEnum.SlowTrap:

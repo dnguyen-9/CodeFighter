@@ -88,23 +88,20 @@ public class UIOverlayManager : MonoBehaviour
         string instructions = string.Empty;
 
         string stageName = GameManager.CurrentStage;
-        string instructionsPath = Application.dataPath + "/Resources/StageInstructions/" + stageName + ".txt";
 
-        if (File.Exists(instructionsPath))
+        var stageInstructionsFile = Resources.Load("StageInstructions/" + stageName);
+        string[] instructionsAsLines = stageInstructionsFile.ToString().Split(new[] { Environment.NewLine }
+                                                                                    , StringSplitOptions.None);
+
+        for (int i = 0; i < instructionsAsLines.Length; i++)
         {
-            instructionsList = new List<string>(File.ReadAllLines(instructionsPath));
-        }
-
-        if (instructionsList.Count > 0)
-        {
-            // First line is reserved for the instructions heading
-            instructionsHeader = instructionsList[0];
-            instructionsList.RemoveAt(0);
-
-            // The rest is used to form the instructions string
-            foreach (string line in instructionsList)
+            if (i == 0)
             {
-                instructions += line;
+                instructionsHeader = instructionsAsLines[i];
+            }
+            else
+            {
+                instructions += instructionsAsLines[i] + Environment.NewLine;
             }
         }
 

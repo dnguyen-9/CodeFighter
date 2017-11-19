@@ -45,6 +45,7 @@ public class CustomGameManager
         foreach (string fileName in StageBuilder.GetStageListFromResources())
         {
             Stage stage = StageBuilder.LoadStageFromResources(fileName);
+            stage.StageName = fileName;
             _CustomStages.Add(stage);
         }
     }
