@@ -57,8 +57,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void UpdatePlayerPosition()
     {
-        //EnableGravity();
-
         // Get input from user
         _Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -66,10 +64,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
 
         // Apply force to the player
-        //if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
-        //{
         _RB.AddForce(transformInputBasedOnCamera * _MoveSpeed);
-        //}
 
         // Check to see if the player fell off the map
         if (transform.position.y < -6)
@@ -103,21 +98,18 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (other.transform.name.StartsWith("RevertTrap", System.StringComparison.Ordinal))
         {
-            print("revert");
             _IsReverted = true;
             _IsSlow = false;
             _IsFast = false;
         }
         if (other.transform.name.StartsWith("SlowTrap", System.StringComparison.Ordinal))
         {
-            print("slow");
             _IsSlow = true;
             _IsFast = false;
             _IsReverted = false;
         }
         if (other.transform.name.StartsWith("SpeedTrap", System.StringComparison.Ordinal))
         {
-            print("speed");
             _IsFast = true;
             _IsSlow = false;
             _IsReverted = false;
