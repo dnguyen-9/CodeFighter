@@ -78,6 +78,12 @@ public class StageBuilder
             case 'e':
                 tile = new Tile(TileTypeEnum.End, false, position);
                 break;
+            case 't':
+                tile = new Tile(TileTypeEnum.SlowTrap, false, position);
+                break;
+            case 'r':
+                tile = new Tile(TileTypeEnum.RevertTrap, false, position);
+                break;
             default:
                 throw new ArgumentException(String.Format("CreateTileFromCharacter method was passed an invalid character, '{0}' at file position [{1}, {2}]",
                                                           character, xPos, yPos));

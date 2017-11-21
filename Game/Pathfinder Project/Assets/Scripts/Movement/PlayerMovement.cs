@@ -3,20 +3,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-//	public GameMaster gameMaster;
+	//public GameMaster gameMaster;
 
-	public float _MoveSpeed;
+    private float _DefaultSpeed = 30f;
+    private float _MoveSpeed;
 //	public GameObject deathParticles;
 //	public bool usesGameMaster = true;
+ 
+    private GameObject RevertTrap;
+    private GameObject SlowTrap;
+    private GameObject SpeedTrap;
 
-	private float _MaxSpeed = 10f;
+	//private float _MaxSpeed = 10f;
 	private Vector3 _Input;
 	private static Vector3 _SpawnLocation;
+
+    private Rigidbody _RB;
+
+    private bool _IsReverted;
+    private bool _IsSlow;
+    private bool _IsFast;
 
 	// Use this for initialization
 	public void Start ()
     {
+        _MoveSpeed = _DefaultSpeed;
 		_SpawnLocation = transform.position;
+        _RB = GetComponent<Rigidbody>();
 	}
 	
     public static Vector3 SpawnLocation
@@ -44,6 +57,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void UpdatePlayerPosition()
     {
+        //EnableGravity();
+
         // Get input from user
         _Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -51,60 +66,80 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
 
         // Apply force to the player
-        if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
-        {
-            GetComponent<Rigidbody>().AddForce(transformInputBasedOnCamera * _MoveSpeed);
-        }
+        //if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
+        //{
+        _RB.AddForce(transformInputBasedOnCamera * _MoveSpeed);
+        //}
 
         // Check to see if the player fell off the map
         if (transform.position.y < -6)
         {
             Die();
         }
+
+        if (_IsReverted)
+        {
+            _MoveSpeed = -Mathf.Abs(_MoveSpeed);
+        }
+
+        if (_IsSlow)
+        {
+            _MoveSpeed = 5f;
+        }
+
+        if(_IsFast)
+        {   
+            _MoveSpeed = 60f;
+        }
     }
 
     #region Collision Example
 
-    //	void OnCollisionEnter(Collision other) 
-    //	{
-    //		if (other.transform.tag == "Enemy") 
-    //		{
-    //			Die ();
-    //		}
-    //	}
-    //
-    //	void OnTriggerEnter(Collider other)
-    //	{
-    //		if (other.transform.tag == "Enemy") 
-    //		{
-    //			Die ();
-    //		}
-    //		if (other.transform.tag == "Token") 
-    //		{
-    ////			if (usesGameMaster) 
-    ////			{
-    //			gameMaster.AddToken ();
-    ////			}
-    //
-    ////			PlaySound (0);
-    //			Destroy (other.gameObject);
-    //		}
-    //		if (other.transform.tag == "Goal") 
-    //		{
-    ////			PlaySound (1);
-    ////			Time.timeScale = 0f;
-    //			gameMaster.CompleteLevel();
-    //		}
-    //	}
-    //		
-    //
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.name.StartsWith("End", System.StringComparison.Ordinal))
+        {
+            //gameMaster.CompleteLevel();
+        }
+        if (other.transform.name.StartsWith("RevertTrap", System.StringComparison.Ordinal))
+        {
+            print("revert");
+            _IsReverted = true;
+            _IsSlow = false;
+            _IsFast = false;
+        }
+        if (other.transform.name.StartsWith("SlowTrap", System.StringComparison.Ordinal))
+        {
+            print("slow");
+            _IsSlow = true;
+            _IsFast = false;
+            _IsReverted = false;
+        }
+        if (other.transform.name.StartsWith("SpeedTrap", System.StringComparison.Ordinal))
+        {
+            print("speed");
+            _IsFast = true;
+            _IsSlow = false;
+            _IsReverted = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name.StartsWith("HollowTrap", System.StringComparison.Ordinal))
+        {
+            other.isTrigger = true;
+        }
+    }
 
     #endregion
 
     void Die() 
 	{
-        //		Check Lives Left;
+        // Check Lives Left;
         SetPlayerPositionToDefault();
+        SetPlayerSpeedToDefault();
+        SetTrapBehaviorToDefault();
 	}
 
     private void SetPlayerPositionToDefault()
@@ -118,5 +153,15 @@ public class PlayerMovement : MonoBehaviour {
 
         transform.position = _SpawnLocation;
     }
+    private void SetPlayerSpeedToDefault()
+    {
+        _MoveSpeed = _DefaultSpeed;
+    }
 
+    private void SetTrapBehaviorToDefault()
+    {
+        _IsSlow = false;
+        _IsReverted = false;
+        _IsFast = false;
+    }
 }

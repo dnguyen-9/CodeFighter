@@ -64,6 +64,10 @@ public class World : MonoBehaviour
                     sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/End"));
                     break;
                 case TileTypeEnum.SlowTrap:
+                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/SlowTrap"));
+                    break;
+                case TileTypeEnum.RevertTrap:
+                    sceneObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/RevertTrap"));
                     break;
                 case TileTypeEnum.SpeedTrap:
                     break;
