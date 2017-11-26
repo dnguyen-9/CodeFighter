@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Stages.unity
+=======
+- path: Assets/Scenes/Level 1.unity
+>>>>>>> Chris-11/17/17-Stage-Engine-Complete
   isLoaded: 1
   isActive: 1

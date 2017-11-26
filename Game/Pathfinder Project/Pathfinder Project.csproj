@@ -193,9 +193,6 @@
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Timeline">
       <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
     </Reference>
@@ -225,12 +222,16 @@
     <Compile Include="Assets\Scripts\Menus\ExitToMenuPanelBehavior.cs" />
     <Compile Include="Assets\Scripts\Menus\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\Movement\CameraBehavior.cs" />
+    <Compile Include="Assets\Scripts\Movement\Player.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Pickup Behavior\PaintPickUpBehavior.cs" />
+    <Compile Include="Assets\Scripts\Pickup Behavior\PickupEnum.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\Stage.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\StageBuilder.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\Tile.cs" />
     <Compile Include="Assets\Scripts\Stage Builder\TileEnum.cs" />
     <Compile Include="Assets\Scripts\Tile Behavior\EndTileBehavior.cs" />
+    <Compile Include="Assets\Scripts\Tile Behavior\StartTileBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\StageInstructions\Level 1.txt" />
