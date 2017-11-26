@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if(_IsFast)
 		{   
-			_MoveSpeed = 90f;
+			_MoveSpeed = 70f;
 		}
 	}
 
@@ -149,7 +149,9 @@ public class PlayerMovement : MonoBehaviour {
 				print ("OnTrigger: HeavyPaint");
 			}
 
-			gameObject.GetComponent<Renderer> ().material.color = new Color(255, 155, 63);
+			gameObject.GetComponent<Renderer> ().material.color = new Color(1.0f, 0.6f, 0.25f);
+
+			_RB.mass = 10f;
 
 			Destroy (other.gameObject);
 		}
@@ -157,10 +159,25 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if (_DebugMode) 
 			{
-				print ("OnTrigger: HeavyPaint");
+				print ("OnTrigger: DoNothingPaint");
 			}
 
-			gameObject.GetComponent<Renderer> ().material.color = Color.red;
+			gameObject.GetComponent<Renderer> ().material.color = new Color(0.176f, 0.184f, 0.898f);
+
+			Destroy (other.gameObject);
+		}
+		if (other.transform.name.StartsWith("SlowPaint", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnTrigger: SlowPaint");
+			}
+
+			gameObject.GetComponent<Renderer> ().material.color = new Color(0.965f, 0.278f, 0.306f);
+
+			_IsSlow = true;
+			_IsFast = false;
+			_IsReverted = false;
 
 			Destroy (other.gameObject);
 		}
