@@ -155,6 +155,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54714051434940362, guid: 4aad9b09d2e20fd4185afa59e1c3c842,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4aad9b09d2e20fd4185afa59e1c3c842, type: 2}
   m_IsPrefabParent: 0
@@ -641,12 +646,12 @@ Prefab:
     - target: {fileID: 224011290193866520, guid: bacdf7d342044f042bba1493f59b77a2,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 498
+      value: 574
       objectReference: {fileID: 0}
     - target: {fileID: 224011290193866520, guid: bacdf7d342044f042bba1493f59b77a2,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 368
+      value: 279.5
       objectReference: {fileID: 0}
     - target: {fileID: 224011290193866520, guid: bacdf7d342044f042bba1493f59b77a2,
         type: 2}
@@ -890,12 +895,12 @@ Prefab:
     - target: {fileID: 224938138439074424, guid: 249b31d48ba93f5429a2efc256a97948,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 498
+      value: 574
       objectReference: {fileID: 0}
     - target: {fileID: 224938138439074424, guid: 249b31d48ba93f5429a2efc256a97948,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 368
+      value: 279.5
       objectReference: {fileID: 0}
     - target: {fileID: 224938138439074424, guid: 249b31d48ba93f5429a2efc256a97948,
         type: 2}
@@ -980,12 +985,12 @@ Prefab:
     - target: {fileID: 224865623731425574, guid: 249b31d48ba93f5429a2efc256a97948,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -365
+      value: -441
       objectReference: {fileID: 0}
     - target: {fileID: 224272477760805446, guid: 249b31d48ba93f5429a2efc256a97948,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 402
+      value: 478
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 249b31d48ba93f5429a2efc256a97948, type: 2}

@@ -6,13 +6,12 @@ using UnityEngine;
 public class PaintPickUpBehavior : MonoBehaviour
 {
     public PickupEnum Pickup = PickupEnum.None;
-    private Player _Player = GameObject.FindGameObjectWithTag("Player").GetComponent(typeof(Player)) as Player;
+    private Player _Player = null;
     
     // Use this for initialization
     void Start()
     {
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent(typeof(Player)) as Player;
-
+        _Player = GameObject.FindGameObjectWithTag("Player").GetComponent(typeof(Player)) as Player;
     }
 
     // Update is called once per frame
@@ -38,10 +37,6 @@ public class PaintPickUpBehavior : MonoBehaviour
             // Update the color of the player
             collider.transform.GetComponent<Renderer>().material.color = GetColorForPickup(pickup);
         }
-    }
-
-    void ApplyPickupColor(Collider collider, PickupEnum pickup)
-    {
     }
 
     public static Color GetColorForPickup(PickupEnum pickup)

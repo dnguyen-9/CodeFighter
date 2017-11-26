@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-	private float _DefaultSpeed = 30f;
+	private float _DefaultSpeed = 50f;
 	private float _MoveSpeed;
 
 	private GameObject RevertTrap;
@@ -48,27 +48,6 @@ public class PlayerMovement : MonoBehaviour
 			SceneManager.LoadScene("Main Menu");
     }
 
-    private void UpdatePlayerPosition()
-    {
-        // Get input from user
-        _Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        // Transform user input to align with the camera position
-        Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
-
-        // Apply force to the player
-        if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
-        {
-            GetComponent<Rigidbody>().AddForce(transformInputBasedOnCamera * _MoveSpeed);
-        }
-
-        // Check to see if the player fell off the map or above the map
-        if (transform.position.y < -6 || transform.position.y > 6)
-        {
-            Die();
-        }
-    }
-
 	public void FixedUpdate () 
 	{
 		UpdatePlayerPosition();
@@ -85,10 +64,10 @@ public class PlayerMovement : MonoBehaviour
 		// Apply force to the player
 		_RB.AddForce(transformInputBasedOnCamera * _MoveSpeed);
 
-		// Check to see if the player fell off the map
-		if (transform.position.y < -6)
+		// Check to see if the player fell off the map or went too high
+		if (transform.position.y < -6 || transform.position.y > 6)
 		{
-			Die();
+			Respawn();
 		}
 
 		if (_IsReverted)
@@ -103,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if(_IsFast)
 		{   
-			_MoveSpeed = 70f;
+			_MoveSpeed = 90f;
 		}
 	}
 
@@ -202,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
 	#endregion
 
-	void Die() 
+	void Respawn() 
 	{
 		SetPlayerPositionToDefault();
 		SetPlayerSpeedToDefault();
