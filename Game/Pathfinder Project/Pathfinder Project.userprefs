@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{3678048E-DAFD-B832-772E-AF0F49C335BC}|" StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Movement/PlayerMovement.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Movement/PlayerMovement.cs" Line="152" Column="80" />
+      <File FileName="Assets/Scripts/Game/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tile Behavior/EndTileBehavior.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Pathfinder_220Project PreferredExecutionTarget="Unity.Editor" />
+  <MultiItemStartupConfigurations />
+</Properties>

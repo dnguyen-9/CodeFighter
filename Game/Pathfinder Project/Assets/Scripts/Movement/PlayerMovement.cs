@@ -3,118 +3,199 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-//	public GameMaster gameMaster;
+	//public GameMaster gameMaster;
 
-	public float _MoveSpeed;
-//	public GameObject deathParticles;
-//	public bool usesGameMaster = true;
+	private float _DefaultSpeed = 30f;
+	private float _MoveSpeed;
+	//	public GameObject deathParticles;
+	//	public bool usesGameMaster = true;
 
-	private float _MaxSpeed = 10f;
+	private GameObject RevertTrap;
+	private GameObject SlowTrap;
+	private GameObject SpeedTrap;
+
+	//private float _MaxSpeed = 10f;
 	private Vector3 _Input;
 	private static Vector3 _SpawnLocation;
 
+	private Rigidbody _RB;
+
+	private bool _IsReverted;
+	private bool _IsSlow;
+	private bool _IsFast;
+
+	private bool _DebugMode = true;
+
 	// Use this for initialization
 	public void Start ()
-    {
+	{
+		_MoveSpeed = _DefaultSpeed;
 		_SpawnLocation = transform.position;
+		_RB = GetComponent<Rigidbody>();
 	}
-	
-    public static Vector3 SpawnLocation
-    {
-        get
-        {
-            return _SpawnLocation;
-        }
-        set
-        {
-            _SpawnLocation = value;
-        }
-    }
 
-    public void Update()
-    {
-    }
-
-    public void FixedUpdate () 
+	public static Vector3 SpawnLocation
 	{
-        UpdatePlayerPosition();
+		get
+		{
+			return _SpawnLocation;
+		}
+		set
+		{
+			_SpawnLocation = value;
+		}
 	}
 
-    private void UpdatePlayerPosition()
-    {
-        // Get input from user
-        _Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        // Transform user input to align with the camera position
-        Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
-
-        // Apply force to the player
-        if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
-        {
-            GetComponent<Rigidbody>().AddForce(transformInputBasedOnCamera * _MoveSpeed);
-        }
-
-        // Check to see if the player fell off the map
-        if (transform.position.y < -6)
-        {
-            Die();
-        }
-    }
-
-    #region Collision Example
-
-    //	void OnCollisionEnter(Collision other) 
-    //	{
-    //		if (other.transform.tag == "Enemy") 
-    //		{
-    //			Die ();
-    //		}
-    //	}
-    //
-    //	void OnTriggerEnter(Collider other)
-    //	{
-    //		if (other.transform.tag == "Enemy") 
-    //		{
-    //			Die ();
-    //		}
-    //		if (other.transform.tag == "Token") 
-    //		{
-    ////			if (usesGameMaster) 
-    ////			{
-    //			gameMaster.AddToken ();
-    ////			}
-    //
-    ////			PlaySound (0);
-    //			Destroy (other.gameObject);
-    //		}
-    //		if (other.transform.tag == "Goal") 
-    //		{
-    ////			PlaySound (1);
-    ////			Time.timeScale = 0f;
-    //			gameMaster.CompleteLevel();
-    //		}
-    //	}
-    //		
-    //
-
-    #endregion
-
-    void Die() 
+	public void Update()
 	{
-        //		Check Lives Left;
-        SetPlayerPositionToDefault();
+		if (Input.GetKey(KeyCode.Escape))
+			SceneManager.LoadScene("Main Menu");
 	}
 
-    private void SetPlayerPositionToDefault()
-    {
-        Rigidbody rigidBody = GetComponent<Rigidbody>();
+	public void FixedUpdate () 
+	{
+		UpdatePlayerPosition();
+	}
 
-        rigidBody.velocity = Vector3.zero;
-        rigidBody.angularVelocity = Vector3.zero;
-        rigidBody.ResetCenterOfMass();
-        rigidBody.ResetInertiaTensor();
+	private void UpdatePlayerPosition()
+	{
+		// Get input from user
+		_Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        transform.position = _SpawnLocation;
-    }
+		// Transform user input to align with the camera position
+		Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
 
+		// Apply force to the player
+		_RB.AddForce(transformInputBasedOnCamera * _MoveSpeed);
+
+		// Check to see if the player fell off the map
+		if (transform.position.y < -6)
+		{
+			Die();
+		}
+
+		if (_IsReverted)
+		{
+			_MoveSpeed = -Mathf.Abs(_MoveSpeed);
+		}
+
+		if (_IsSlow)
+		{
+			_MoveSpeed = 5f;
+		}
+
+		if(_IsFast)
+		{   
+			_MoveSpeed = 90f;
+		}
+	}
+
+	#region Collision Example
+
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.transform.name.StartsWith("RevertTrap", System.StringComparison.Ordinal))
+		{
+			if(_DebugMode)
+			{
+				print ("OnCollision: RevertTrap");
+			}
+
+			_IsReverted = true;
+			_IsSlow = false;
+			_IsFast = false;
+		}
+		if (other.transform.name.StartsWith("SlowTrap", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnCollision: SlowTrap");
+			}
+
+			_IsSlow = true;
+			_IsFast = false;
+			_IsReverted = false;
+		}
+		if (other.transform.name.StartsWith("SpeedTrap", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnCollision: SpeedTrap");
+			}
+
+			_IsFast = true;
+			_IsSlow = false;
+			_IsReverted = false;
+		}
+	}
+	#endregion
+
+	#region Trigger Example
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.name.StartsWith("HollowTrap", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnTrigger: HollowTrap");
+			}
+
+			other.isTrigger = true;
+		}
+		if (other.transform.name.StartsWith("HeavyPaint", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnTrigger: HeavyPaint");
+			}
+
+			gameObject.GetComponent<Renderer> ().material.color = new Color(255, 155, 63);
+
+			Destroy (other.gameObject);
+		}
+		if (other.transform.name.StartsWith("DoNothingPaint", System.StringComparison.Ordinal))
+		{
+			if (_DebugMode) 
+			{
+				print ("OnTrigger: HeavyPaint");
+			}
+
+			gameObject.GetComponent<Renderer> ().material.color = Color.red;
+
+			Destroy (other.gameObject);
+		}
+	}
+
+	#endregion
+
+	void Die() 
+	{
+		// Check Lives Left;
+		SetPlayerPositionToDefault();
+		SetPlayerSpeedToDefault();
+		SetTrapBehaviorToDefault();
+	}
+
+	private void SetPlayerPositionToDefault()
+	{
+		Rigidbody rigidBody = GetComponent<Rigidbody>();
+
+		rigidBody.velocity = Vector3.zero;
+		rigidBody.angularVelocity = Vector3.zero;
+		rigidBody.ResetCenterOfMass();
+		rigidBody.ResetInertiaTensor();
+
+		transform.position = _SpawnLocation;
+	}
+	private void SetPlayerSpeedToDefault()
+	{
+		_MoveSpeed = _DefaultSpeed;
+	}
+
+	private void SetTrapBehaviorToDefault()
+	{
+		_IsSlow = false;
+		_IsReverted = false;
+		_IsFast = false;
+	}
 }
