@@ -2,19 +2,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour {
-	//public GameMaster gameMaster;
-
+public class PlayerMovement : MonoBehaviour
+{
 	private float _DefaultSpeed = 30f;
 	private float _MoveSpeed;
-	//	public GameObject deathParticles;
-	//	public bool usesGameMaster = true;
 
 	private GameObject RevertTrap;
 	private GameObject SlowTrap;
 	private GameObject SpeedTrap;
 
-	//private float _MaxSpeed = 10f;
 	private Vector3 _Input;
 	private static Vector3 _SpawnLocation;
 
@@ -47,6 +43,32 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void Update()
+    {
+
+    }
+
+    private void UpdatePlayerPosition()
+    {
+        // Get input from user
+        _Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        // Transform user input to align with the camera position
+        Vector3 transformInputBasedOnCamera = Camera.main.transform.TransformDirection(_Input);
+
+        // Apply force to the player
+        if (GetComponent<Rigidbody>().velocity.magnitude < _MaxSpeed)
+        {
+            GetComponent<Rigidbody>().AddForce(transformInputBasedOnCamera * _MoveSpeed);
+        }
+
+        // Check to see if the player fell off the map or above the map
+        if (transform.position.y < -6 || transform.position.y > 6)
+        {
+            Die();
+        }
+    }
+
+    void Die() 
 	{
 		if (Input.GetKey(KeyCode.Escape))
 			SceneManager.LoadScene("Main Menu");
@@ -187,7 +209,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Die() 
 	{
-		// Check Lives Left;
 		SetPlayerPositionToDefault();
 		SetPlayerSpeedToDefault();
 		SetTrapBehaviorToDefault();
