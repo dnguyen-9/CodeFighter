@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Update()
     {
-
+		if (Input.GetKey(KeyCode.Escape))
+			SceneManager.LoadScene("Main Menu");
     }
 
     private void UpdatePlayerPosition()
@@ -67,12 +68,6 @@ public class PlayerMovement : MonoBehaviour
             Die();
         }
     }
-
-    void Die() 
-	{
-		if (Input.GetKey(KeyCode.Escape))
-			SceneManager.LoadScene("Main Menu");
-	}
 
 	public void FixedUpdate () 
 	{
