@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	public void Start ()
     {
-		_SpawnLocation = transform.position;
+		//_SpawnLocation = transform.position;
 	}
 	
     public static Vector3 SpawnLocation
@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour {
             GetComponent<Rigidbody>().AddForce(transformInputBasedOnCamera * _MoveSpeed);
         }
 
-        // Check to see if the player fell off the map
-        if (transform.position.y < -6)
+        // Check to see if the player fell off the map or above the map
+        if (transform.position.y < -6 || transform.position.y > 6)
         {
             Die();
         }
