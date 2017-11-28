@@ -57,12 +57,16 @@
      <Compile Include="Assets\Scripts\Menus\ExitToMenuPanelBehavior.cs" />
      <Compile Include="Assets\Scripts\Menus\MainMenuBehavior.cs" />
      <Compile Include="Assets\Scripts\Movement\CameraBehavior.cs" />
+     <Compile Include="Assets\Scripts\Movement\Player.cs" />
      <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Pickup Behavior\PaintPickUpBehavior.cs" />
+     <Compile Include="Assets\Scripts\Pickup Behavior\PickupEnum.cs" />
      <Compile Include="Assets\Scripts\Stage Builder\Stage.cs" />
      <Compile Include="Assets\Scripts\Stage Builder\StageBuilder.cs" />
      <Compile Include="Assets\Scripts\Stage Builder\Tile.cs" />
      <Compile Include="Assets\Scripts\Stage Builder\TileEnum.cs" />
      <Compile Include="Assets\Scripts\Tile Behavior\EndTileBehavior.cs" />
+     <Compile Include="Assets\Scripts\Tile Behavior\StartTileBehavior.cs" />
      <None Include="Assets\Resources\StageInstructions\Level 1.txt" />
      <None Include="Assets\Resources\Stages\Stage1.txt" />
      <None Include="Assets\Resources\Stages\Stage2.txt" />
