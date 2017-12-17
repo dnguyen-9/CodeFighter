@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136470420726381344}
   - component: {fileID: 23142349594879240}
   m_Layer: 0
-  m_Name: SlowPaint
+  m_Name: FloatPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
