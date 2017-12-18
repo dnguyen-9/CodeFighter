@@ -1,0 +1,294 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder id="title" runat="server">
+        
+        </asp:ContentPlaceHolder>        
+    </title>    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="StyleSheets/Master.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="Page Classifier">
+        <form id="form1" runat="server">
+            <% if (Session["user"] == null) %>
+            <% { %>
+                <div class="topBar">
+                    <div class="pull-left">
+                        <h4 class="icon" style="color:white;">WELCOME TO TESTING METHODS EDUCATING GAME &nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                    </div>
+                    <div class="pull-right">
+                        <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                        <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                        <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                        <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                        <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                    </div>        
+                </div>
+
+                <header id="header" style="width:85%">
+                    <div class="col-sm-offset-1 Header-Pannel">
+                        <div>
+                            <a href="Home.aspx"><img src="Images/Social%20Icons/LOGO.png" style="height:80px;" /></a>
+                        </div>
+                    </div>
+                </header>
+                <nav class="col-sm-offset-1 Navbar-Pannel" role="navigation" style="width:85%; border-top:1px solid;">
+                    <div class="navbar-collapse">
+                        <ul class="navbar-nav nav pull-right navbar">
+                            <li class="navbar-font"><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Home.aspx" ForeColor="Black" Font-Size="Small"><i class="glyphicon glyphicon-home"></i>Home</asp:HyperLink></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropbtn">About Us &nbsp;<span class="glyphicon glyphicon-collapse-down"></span></a>
+                                <div class="dropdown-content">
+                                    <asp:HyperLink runat="server" NavigateUrl="~/OurPromises.aspx">Our Promises</asp:HyperLink>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/FAQ'S.aspx">FAQ's</asp:HyperLink>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/TrustAndSaftey.aspx">Trust & Saftey</asp:HyperLink>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/TermsAndConditions.aspx">Terms and Conditions</asp:HyperLink>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/PrivacyPolicy.aspx">Privacy Policy</asp:HyperLink>
+                                </div>
+                            </li>                        
+                            <li class="navbar-font"><asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/ContactUs.aspx" ForeColor="Black" Font-Size="Small">Contact Us</asp:HyperLink></li>
+                            <li class="navbar-font"><asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="~/HowToPlayGame.aspx" ForeColor="Black" Font-Size="Small">How to Play Game</asp:HyperLink></li>
+                            <li class="navbar-font"><asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/LoginAndRegister.aspx" ForeColor="Black" Font-Size="Small"><i class="glyphicon glyphicon-log-in"></i> Login/Register</asp:HyperLink></li>                        
+                        </ul>
+                    </div>
+                </nav>
+                <div class="col-sm-offset-1 bodyContent" style="width:85%;">
+                    <asp:ContentPlaceHolder runat="server" ID="BodyContent">
+
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <footer id="footer" style="background-color: darkslategrey;">
+                    <div class="col-sm-offset-0" style="width:95%;">
+                    <br />
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <h4><a href="OurPromises.aspx" style="color:white">Our Promises</a></h4>
+                        <h4><a href="FAQ'S.aspx" style="color:white">FAQ's</a></h4>
+                        <h4><a href="TrustAndSaftey.aspx" style="color:white">Trust & Saftey</a></h4>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <h4><a href="TermsAndConditions.aspx" style="color:white">Terms and Conditions</a></h4>
+                        <h4><a href="PrivacyPolicy.aspx" style="color:white">Privacy Policy</a></h4>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <h4 style="color:white; font-size:30px;">Contact Us:</h4>
+                        <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;127 bannow science center</h4>
+                        <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield University</h4>
+                        <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1073 N Benson Rd</h4>
+                        <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield, CT 06824</h4>
+                        <h4 style="color:white; font-size:30px;">Follow Us:</h4>
+                        <div>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                            <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                            <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                            <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                            <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                        </div>
+                    </div>
+                    <div>
+                    <br /><br /><br /><br /><br />                    
+                    <h4 style="text-align:center; color:white"> &copy; 2017 Code Fighters Inc.</h4>
+                    <br />
+                </div>
+              </div>
+                
+            </footer>
+            <% } %>
+            <% else if (Session["user"] == "MadanVeerarouth1995") %>
+            <% { %>
+                    <div class="topBar">
+                        <div class="pull-left">
+                            <h4 class="icon" style="color:white;">WELCOME BACK ADMIN MADAN MOHAN REDDY VEERAROUTH!</h4>
+                        </div>
+                        <div class="pull-right">
+                            <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                            <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                            <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                            <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                            <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                        </div>        
+                    </div>
+
+                    <header id="Adminheader" style="width:85%">
+                        <div class="col-sm-offset-1 Header-Pannel">
+                            <div>
+                                <a href="Home.aspx"><img src="Images/Social%20Icons/LOGO.png" style="height:80px;" /></a>
+                            </div>
+                        </div>
+                    </header>
+
+                    <nav class="col-sm-offset-1 Navbar-Pannel" role="navigation" style="width:85%; border-top:1px solid;">
+                        <div class="navbar-collapse">
+                            <ul class="navbar-nav nav pull-right navbar">
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AdminHome.aspx" ForeColor="Black" Font-Size="Small"><i class="glyphicon glyphicon-home"></i>Home</asp:HyperLink></li>                        
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/ListOfUsers.aspx" ForeColor="Black" Font-Size="Small">List Of Users</asp:HyperLink></li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/AdminLeaderboard.aspx" ForeColor="Black" Font-Size="Small">Leaderboard</asp:HyperLink></li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/AdminFAQ'S.aspx" ForeColor="Black" Font-Size="Small">FAQ's</asp:HyperLink></li>
+                                <li class="navbar-font">
+                                    <asp:LinkButton id="LinkButton1" runat="server" OnClick="Logout_Click" AutoPostBack="true" style="color:black;">
+                                        <span class="glyphicon glyphicon-log-out" ></span>
+
+                                        <asp:label runat="server" ID="Label1" Text="LogOut"></asp:label>
+
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="col-sm-offset-1 bodyContent" style="width:85%;">
+                        <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder1">
+
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+                    <footer id="AdminFooter" style="background-color: darkslategrey;">
+                        <div class="col-sm-offset-0" style="width:95%;">
+                        <br />
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4><a href="OurPromises.aspx" style="color:white">Our Promises</a></h4>
+                            <h4><a href="FAQ'S.aspx" style="color:white">FAQ's</a></h4>
+                            <h4><a href="TrustAndSaftey.aspx" style="color:white">Trust & Saftey</a></h4>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4><a href="TermsAndConditions.aspx" style="color:white">Terms and Conditions</a></h4>
+                            <h4><a href="PrivacyPolicy.aspx" style="color:white">Privacy Policy</a></h4>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4 style="color:white; font-size:30px;">Contact Us:</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;127 bannow science center</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield University</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1073 N Benson Rd</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield, CT 06824</h4>
+                            <h4 style="color:white; font-size:30px;">Follow Us:</h4>
+                            <div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                                <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                                <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                                <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                                <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <br /><br /><br /><br /><br />                    
+                            <h4 style="text-align:center; color:white"> &copy; 2017 Code Fighters Inc.</h4>
+                            <br />
+                        </div>
+                    </div>
+                </footer>
+            <% } %>
+            <% else %>
+            <% { %>
+                    <div class="topBar">
+                        <div class="pull-left" style="color:white; font-size:20px; padding-top:5px; text-transform:uppercase;">
+                            <asp:Label runat="server">WELCOME</asp:Label>
+                            <asp:Label runat="server" ID="lblFirstName" Text=""></asp:Label>
+                            <asp:Label runat="server" ID="lblLastName" Text=""></asp:Label>
+                            <asp:Label runat="server">!</asp:Label>
+                            <h4 class="icon" style="color:white;">WELCOME BACK ADMIN MADAN MOHAN REDDY VEERAROUTH!</h4>
+                        </div>
+                        <div class="pull-right">
+                            <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                            <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                            <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                            <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                            <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                        </div>        
+                    </div>
+
+                    <header id="UserHeader" style="width:85%">
+                        <div class="col-sm-offset-1 Header-Pannel">
+                            <div>
+                                <a href="Home.aspx"><img src="Images/Social%20Icons/LOGO.png" style="height:80px;" /></a>
+                            </div>
+                        </div>
+                    </header>
+
+                    <nav class="col-sm-offset-1 Navbar-Pannel" role="navigation" style="width:85%; border-top:1px solid;">
+                        <div class="navbar-collapse">
+                            <ul class="navbar-nav nav pull-right navbar">
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/Home.aspx" ForeColor="Black" Font-Size="Small"><i class="glyphicon glyphicon-home"></i>Home</asp:HyperLink></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropbtn">About Us &nbsp;<span class="glyphicon glyphicon-collapse-down"></span></a>
+                                    <div class="dropdown-content">
+                                        <asp:HyperLink runat="server" NavigateUrl="~/OurPromises.aspx">Our Promises</asp:HyperLink>
+                                        <asp:HyperLink runat="server" NavigateUrl="~/UserFAQ's.aspx">FAQ's</asp:HyperLink>
+                                        <asp:HyperLink runat="server" NavigateUrl="~/TrustAndSaftey.aspx">Trust & Saftey</asp:HyperLink>
+                                        <asp:HyperLink runat="server" NavigateUrl="~/TermsAndConditions.aspx">Terms and Conditions</asp:HyperLink>
+                                        <asp:HyperLink runat="server" NavigateUrl="~/PrivacyPolicy.aspx">Privacy Policy</asp:HyperLink>
+                                    </div>
+                                </li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink13" runat="server" NavigateUrl="~/ContactUs.aspx" ForeColor="Black" Font-Size="Small">Contact Us</asp:HyperLink></li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="~/HowToPlayGame.aspx" ForeColor="Black" Font-Size="Small">How to Play Game</asp:HyperLink></li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink11" runat="server" NavigateUrl="~/UserLeaderboard.aspx" ForeColor="Black" Font-Size="Small">Leaderboard</asp:HyperLink></li>
+                                <li class="navbar-font"><asp:HyperLink ID="HyperLink12" runat="server" NavigateUrl="~/MyGameHistory.aspx" ForeColor="Black" Font-Size="Small">My Game History</asp:HyperLink></li>
+                                <li class="navbar-font">
+                                    <asp:LinkButton id="LinkButton2" runat="server" OnClick="Logout_Click" AutoPostBack="true" style="color:black;">
+                                        <span class="glyphicon glyphicon-log-out" ></span>
+
+                                        <asp:label runat="server" ID="Label2" Text="LogOut"></asp:label>
+
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="col-sm-offset-1 bodyContent" style="width:85%;">
+                        <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
+
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+                    <footer id="UserFooter" style="background-color: darkslategrey;">
+                        <div class="col-sm-offset-0" style="width:95%;">
+                        <br />
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4><a href="OurPromises.aspx" style="color:white">Our Promises</a></h4>
+                            <h4><a href="FAQ'S.aspx" style="color:white">FAQ's</a></h4>
+                            <h4><a href="TrustAndSaftey.aspx" style="color:white">Trust & Saftey</a></h4>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4><a href="TermsAndConditions.aspx" style="color:white">Terms and Conditions</a></h4>
+                            <h4><a href="PrivacyPolicy.aspx" style="color:white">Privacy Policy</a></h4>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <h4 style="color:white; font-size:30px;">Contact Us:</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;127 bannow science center</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield University</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1073 N Benson Rd</h4>
+                            <h4 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fairfield, CT 06824</h4>
+                            <h4 style="color:white; font-size:30px;">Follow Us:</h4>
+                            <div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/"><img src="Images/Social%20Icons/Facebook.png" height="35px"/></a>
+                                <a href="https://plus.google.com/"><img src="Images/Social%20Icons/Google-Plus.png" height="35px" /></a>
+                                <a href="https://www.linkedin.com/"><img src="Images/Social%20Icons/Linkedin.png" height="35px" /></a>
+                                <a href="https://www.instagram.com/?hl=en"><img src="Images/Social%20Icons/Instagram.png" height="35px" /></a>
+                                <a href="https://twitter.com/"><img src="Images/Social%20Icons/Twitter.png" height="35px" /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <br /><br /><br /><br /><br />                    
+                            <h4 style="text-align:center; color:white"> &copy; 2017 Code Fighters Inc.</h4>
+                            <br />
+                        </div>
+                    </div>
+                </footer>
+            <% } %>
+        </form>
+    </div>
+</body>
+</html>
